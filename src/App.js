@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 
 import './App.css';
 
@@ -8,7 +8,7 @@ const Nav = () => (
     <Link to="/">
       <h5>Home</h5>
     </Link>
-    <Link to="/about">
+    <Link to="/about" state={{test: 'test'}}>
       <h5>About</h5>
     </Link>
     <Link to="/contact">
@@ -22,12 +22,16 @@ const Home = () => (
     <h1>Home</h1>
   </>
 );
-const About = () => (
-  <>
-    <Nav />
-    <h1>About</h1>
-  </>
-);
+const About = () => {
+  const location = useLocation();
+  return (
+    <>
+      <Nav />
+      <h1>About</h1>
+      {JSON.stringify(location)}
+    </>
+  )
+};
 const Contact = () => (
   <>
     <Nav />
